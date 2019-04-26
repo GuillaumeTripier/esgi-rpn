@@ -3,39 +3,41 @@ package rpn;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static rpn.CLI.evaluate;
 
 public class CLITest {
 
     @Test
     public void should_evaluate_single_digit_constant() {
-        assertThat(evaluate("5")).isEqualTo(5);
+        assertThat(new CLI().evaluate("5")).isEqualTo(5);
     }
 
     @Test
     public void should_evaluate_multiple_digits_constant() {
-        assertThat(evaluate("17")).isEqualTo(17);
+        assertThat(new CLI().evaluate("17")).isEqualTo(17);
     }
 
     @Test
     public void should_evaluate_simple_addition() {
-        assertThat(evaluate("17 5 +")).isEqualTo(22);
+        assertThat(new CLI().evaluate("17 5 +")).isEqualTo(22);
+    }
+
+    @Test
+    public void should_evaluate_simple_multiplication() {
+        assertThat(new CLI().evaluate("2 3 *")).isEqualTo(6);
+    }
+
+    @Test
+    public void should_evaluate_simple_division() {
+        assertThat(new CLI().evaluate("10 5 /")).isEqualTo(2);
+    }
+
+    @Test
+    public void should_evaluate_simple_substraction() {
+        assertThat(new CLI().evaluate("2 3 -")).isEqualTo(-1);
     }
 
     @Test
     public void should_evaluate_more_complex_addition() {
-        assertThat(evaluate("2 3 5 + +")).isEqualTo(10);
-    }
-    @Test
-    public void should_evaluate_simple_subtraction() {
-        assertThat(evaluate("4 3 -")).isEqualTo(1);
-    }
-    @Test
-    public void should_evaluate_simple_multiply() {
-        assertThat(evaluate("2 3 *")).isEqualTo(6);
-    }
-    @Test
-    public void should_evaluate_simple_divide() {
-        assertThat(evaluate("4 2 /")).isEqualTo(2);
+        assertThat(new CLI().evaluate("2 3 5 + +")).isEqualTo(10);
     }
 }

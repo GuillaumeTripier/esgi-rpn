@@ -22,11 +22,32 @@ public class CLI {
         int op2;
         char c;
         result = Integer.parseInt(fullString[0]);
-        if(fullString.length > 2) {
-            for (int i = 0; i < fullString.length - 2; i += 2) {
+        if(fullString.length == 3){
+            op1 = Integer.parseInt(fullString[0]);
+            System.out.println("bob");
+            op2 = Integer.parseInt(fullString[1]);
+            c = fullString[fullString.length - 1].charAt(0);
+            switch (c) {
+                case '+':
+                    result = op1 + op2;
+                    break;
+                case '-':
+                    result = op1 - op2;
+                    break;
+                case '*':
+                    result = op1 * op2;
+                    break;
+                case '/':
+                    result = op1 / op2;
+                    break;
+                default:
+                    System.out.println("Error");
+            }
+        } else if(fullString.length > 3) {
+            for (int i = 0; i < fullString.length - 3; i += 1) {
                 op1 = result;
                 op2 = Integer.parseInt(fullString[i + 1]);
-                c = fullString[i + 2].charAt(0);
+                c = fullString[fullString.length - 1 - i].charAt(0);
                 switch (c) {
                     case '+':
                         result = op1 + op2;

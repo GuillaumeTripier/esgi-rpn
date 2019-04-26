@@ -26,9 +26,7 @@ public class CLI {
             for (int i = 0; i < fullString.length - 2; i += 2) {
                 op1 = result;
                 op2 = Integer.parseInt(fullString[i + 1]);
-                System.out.println(op2);
-                //c = fullString[i + 2].charAt(0);
-                c = fullString[fullString.length/2].charAt(0);
+                c = fullString[i + 2].charAt(0);
                 switch (c) {
                     case '+':
                         result = op1 + op2;
@@ -48,7 +46,6 @@ public class CLI {
                 }
             }
         }
-        //System.out.println(result);
         return result;
     }
 }

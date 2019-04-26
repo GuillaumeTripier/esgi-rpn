@@ -1,5 +1,6 @@
 package rpn;
 
+import java.util.ArrayDeque;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -12,61 +13,39 @@ public class CLI {
         System.out.println("> " + result);
     }
 
-    /*static long evaluate(String expression) {
-        return 0;
-    }*/
-    static long evaluate(String entree){//ArrayDeque
-        String[] fullString = entree.split(" ");
-        int result = 0;
-        int op1;
-        int op2;
-        char c;
-        result = Integer.parseInt(fullString[0]);
-        if(fullString.length == 3){
-            op1 = Integer.parseInt(fullString[0]);
-            System.out.println("bob");
-            op2 = Integer.parseInt(fullString[1]);
-            c = fullString[fullString.length - 1].charAt(0);
-            switch (c) {
-                case '+':
-                    result = op1 + op2;
+    static long evaluate(String expression){//ArrayDeque
+        String[] tokens = expression.split(" ");
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
+        int right;
+        int left;
+        for (String token : tokens){
+            switch (token) {
+                case "+":
+                    right = stack.pop();
+                    left = stack.pop();
+                    stack.push(left + right);
                     break;
-                case '-':
-                    result = op1 - op2;
+                case "-":
+                    right = stack.pop();
+                    left = stack.pop();
+                    stack.push(left - right);
                     break;
-                case '*':
-                    result = op1 * op2;
+                case "*":
+                    right = stack.pop();
+                    left = stack.pop();
+                    stack.push(left * right);
                     break;
-                case '/':
-                    result = op1 / op2;
+                case "/":
+                    right = stack.pop();
+                    left = stack.pop();
+                    stack.push(left / right);
                     break;
                 default:
-                    System.out.println("Error");
-            }
-        } else if(fullString.length > 3) {
-            for (int i = 0; i < fullString.length - 3; i += 1) {
-                op1 = result;
-                op2 = Integer.parseInt(fullString[i + 1]);
-                c = fullString[fullString.length - 1 - i].charAt(0);
-                switch (c) {
-                    case '+':
-                        result = op1 + op2;
-                        break;
-                    case '-':
-                        result = op1 - op2;
-                        break;
-                    case '*':
-                        result = op1 * op2;
-                        break;
-                    case '/':
-                        result = op1 / op2;
-                        break;
-                    default:
-                        i += fullString.length;
-                        System.out.println("Error");
-                }
+                    int constant = Integer.parseInt(token);
+                    stack.push(constant);
+                    break;
             }
         }
-        return result;
+        return stack.pop();
     }
 }

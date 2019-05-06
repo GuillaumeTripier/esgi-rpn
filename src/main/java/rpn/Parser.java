@@ -5,21 +5,21 @@ import java.util.List;
 
 public class Parser {
 
-    private rpn.Subscriber subscriber;
+    private Subscriber subscriber;
 
     List<String> parse(String expression) {
         List<String> tokens = Arrays.asList(expression.split(" "));
         for (String token : tokens) {
-            publish(new rpn.TokenMessage(token));
+            publish(new TokenMessage(token));
         }
         return tokens;
     }
 
-    private void publish(rpn.TokenMessage tokenMessage) {
+    private void publish(TokenMessage tokenMessage) {
         subscriber.onEvent(tokenMessage);
     }
 
-    public void subscribe(rpn.Subscriber subscriber) {
+    public void subscribe(Subscriber subscriber) {
         this.subscriber = subscriber;
     }
 }

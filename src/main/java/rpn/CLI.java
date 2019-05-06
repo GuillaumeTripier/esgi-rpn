@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CLI {
-    private final rpn.Parser parser = new rpn.Parser();
+    private final Parser parser = new Parser();
 
     public static final void main(String[] args) {
         String expression = Stream.of(args).collect(Collectors.joining(" "));
@@ -18,16 +18,16 @@ public class CLI {
     }
 
     long evaluate(String expression) {
-        List<rpn.TokenMessage> receivedTokens = new ArrayList<>();
-        parser.subscribe(new rpn.Subscriber() {
+        List<TokenMessage> receivedTokens = new ArrayList<>();
+        parser.subscribe(new Subscriber() {
             @Override
-            public void onEvent(rpn.TokenMessage tokenMessage) {
+            public void onEvent(TokenMessage tokenMessage) {
                 receivedTokens.add(tokenMessage);
             }
         });
         parser.parse(expression);
         List<String> tokens = new ArrayList<>();
-        for (rpn.TokenMessage message : receivedTokens) {
+        for (TokenMessage message : receivedTokens) {
             tokens.add(message.getToken());
         }
         ArrayDeque<Integer> stack = new ArrayDeque<>();

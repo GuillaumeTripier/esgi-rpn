@@ -1,7 +1,7 @@
 # RPN
 
 
-* #### Vue pertinante de l'architecturale
+* #### Vue pertinante de l'architecture
 ![RPN_schema](https://raw.githubusercontent.com/GuillaumeTripier/esgi-rpn/master/RPN_schema.png)
 
 

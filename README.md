@@ -1,6 +1,14 @@
 # RPN
 
 
+* #### Vue pertinante de l'architecturale
+![RPN_schema](https://raw.githubusercontent.com/GuillaumeTripier/esgi-rpn/master/RPN_schema.png)
+
+
+
+
+
+
 En notation Polonaise inversée (Reverse Polish Notation) les opérateurs (`+`, `-`, `*`, ...)
 suivent les opérandes. Par exemple pour ajouter 3 et 4, au lieu d'écrire `3 + 4`, on écrira
 `3 4 +`.

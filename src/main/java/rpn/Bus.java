@@ -3,15 +3,19 @@ package rpn;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bus {
-    private rpn.Subscriber subscriber;
-    private List<Subscriber> subscribers = new ArrayList<>();
+class Bus {
 
-    private void publish(rpn.TokenMessage tokenMessage) {
-        //subscribers.onEvent(tokenMessage);
+    private static List<Subscriber> subscribers = new ArrayList<>();
+
+    public static void publish(String token) {
+        //if (subscribers != null && subscribers.size() > 0) {
+        for (Subscriber subscriber : subscribers) {
+            subscriber.onEvent(token);
+        }
+        //}
     }
 
-    public void subscribe(rpn.Subscriber subscriber) {
-        this.subscribers.add(subscriber);
+    public static void subscribe(Subscriber subscriber) {
+        subscribers.add(subscriber);
     }
 }

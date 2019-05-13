@@ -1,5 +1,6 @@
 package rpn;
 
-public interface Subscriber {
-    void onEvent(TokenMessage tokenMessage);
+interface Subscriber {
+
+    void onEvent(String token);
 }
